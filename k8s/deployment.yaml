@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nestjs-demo
+spec:
+  selector:
+    matchLabels:
+      app: nestjs-demo
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: nestjs-demo
+    spec:
+      containers:
+        - name: nestjs-demo
+          image: eseynoa/nestjs-demo
+          ports:
+            - containerPort: 3002
