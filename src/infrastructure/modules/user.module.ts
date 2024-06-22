@@ -3,7 +3,7 @@ import { MongooseModule } from '@nestjs/mongoose';
 import { UserEntity, UserSchema } from '../repositories/schemas/user.schema';
 import { MongoUserRepository } from '../repositories/user.repository.impl';
 import { UserService } from 'src/application/services/user.service';
-import { RedisService } from 'src/redis/redis.service';
+// import { RedisService } from 'src/redis/redis.service';
 import { MessageSchema } from 'src/redis/message.schema';
 
 @Module({
@@ -11,8 +11,8 @@ import { MessageSchema } from 'src/redis/message.schema';
   providers: [
     { provide: 'UserRepository', useClass: MongoUserRepository },
     UserService,
-    RedisService
+    // RedisService
   ],
-  exports: [UserService,RedisService],
+  exports: [UserService],
 })
 export class UserModule {}
