@@ -1,0 +1,28 @@
+version: "3.8"
+services:
+  mongo:
+    image: mongo:7.0
+    container_name: server-mongodb
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: 1161865
+      MONGO_INITDB_ROOT_PASSWORD: 1161865
+    ports:
+      - 27017:27017
+    networks:
+      - server-network
+    healthcheck:
+      test: echo 'db.runCommand("ping").ok' | mongo localhost:27017/test --quiet
+      interval: 30s
+      timeout: 10s
+      retries: 3
+    restart: unless-stopped
+  nestjs:
+    image: 339712861393.dkr.ecr.us-east-2.amazonaws.com/nestjs-backend:latest
+    container_name: nestjs
+    ports: 
+      - 3002:3002
+      - 9229:9229
+    networks:
+      - server-network
+networks:
+  server-network:
