@@ -10,4 +10,4 @@ COPY . .
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 EXPOSE 3002
 
-CMD ["npm", "start"] 
+CMD ["node", "dist/main"] 
