@@ -1,5 +1,5 @@
 # Etapa de construcción
-FROM --platform=linux/amd64 node:current-alpine as base
+FROM --platform=linux/amd64 node:21-alpine AS base
 
 FROM base AS deps
 
