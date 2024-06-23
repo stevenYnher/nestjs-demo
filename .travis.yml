@@ -2,6 +2,7 @@ dist: bionic
 language: node_js
 node_js: '16'
 
+sudo: required
 services:
   - docker
 
@@ -17,6 +18,8 @@ before_script:
   - aws configure set aws_secret_access_key $AWS_SECRET_ACCESS_KEY
   - aws configure set default.region $AWS_DEFAULT_REGION
 
+script:
+  - docker run -e CI=true $AWS_ECR_REGISTRY_NAME npm start
 jobs:
   include:
     - stage: Backend Deployment
@@ -35,6 +38,5 @@ jobs:
         app: $AWS_ELASTIC_BEANSTALK_APP_NAME
         env: $AWS_ELASTIC_BEANSTALK_ENV_NAME
         bucket_name: $AWS_ELASTIC_BEANSTALK_BUCKET_NAME
-
         on:
           branch: main
